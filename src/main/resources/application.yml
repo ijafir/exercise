@@ -1,0 +1,37 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: production
+# Database
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/test
+    username: SA
+    password:
+# JPA properties
+  jpa:
+    hibernate:
+      # Hibernate ddl auto (create, create-drop, update)
+      ddl-auto: create-drop
+    # Show or not log for each sql query
+    show-sql: true
+    database: mysql
+    # The SQL dialect makes Hibernate generate better SQL for the chosen database
+    database-platform: org.hibernate.dialect.H2Dialect
+# Logging
+logging:
+  file: logs/dev_app.log
+  pattern:
+    console: "[%-5level] %date{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %logger{15}#%line %msg\n"
+    file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    com.exercise: DEBUG
+    org.springframework: DEBUG
+    org.hibernate: INFO
+server:
+  tomcat:
+    basedir: my-tomcat
+    accesslog:
+      enabled: true
+      #pattern: "%t %a %r %s (%D ms)"
+  port: 8443
