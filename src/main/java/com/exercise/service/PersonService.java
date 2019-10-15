@@ -2,6 +2,7 @@ package com.exercise.service;
 
 import com.exercise.domain.Person;
 
+import java.util.Date;
 import java.util.List;
 
 public interface PersonService
@@ -20,4 +21,6 @@ public interface PersonService
     void deletePerson(String id);
 
     void deleteAllPersons();
+
+    Person findByLastNameAndFirstNameAndDobAndEmail(String lastName, String firstName, Date dob, String email);
 }

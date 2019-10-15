@@ -58,6 +58,9 @@ public class PersonController
             return new ResponseEntity(new CustomErrorType("Unable to create. A Person with id " +
                     person.getId() + " already exist."),HttpStatus.CONFLICT);
         }
+        if(personService.findByLastNameAndFirstNameAndDobAndEmail(person.getLastName(), person.getFirstName(),person.getDob(), person.getEmail()) != null)
+            return new ResponseEntity<>(new CustomErrorType("A Contact already exists"), HttpStatus.BAD_REQUEST);
+
         personService.savePerson(person);
         HttpHeaders headers = new HttpHeaders();
         headers.setLocation(ucBuilder.path("person/{id}").buildAndExpand(person.getId()).toUri());

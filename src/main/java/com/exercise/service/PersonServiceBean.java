@@ -12,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -79,5 +80,10 @@ public class PersonServiceBean implements PersonService
     public void deleteAllPersons() {
         LOGGER.debug("The list all persons deleted!");
         repository.deleteAll();
+    }
+
+    @Override
+    public Person findByLastNameAndFirstNameAndDobAndEmail(String lastName, String firstName, Date dob, String email){
+        return repository.findByLastNameAndFirstNameAndDobAndEmail(lastName, firstName, dob, email);
     }
 }
